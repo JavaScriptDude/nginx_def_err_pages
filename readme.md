@@ -1,13 +1,14 @@
-1. Create /var/www/error
-  * Ensure that nginx has read access
+NGINX has built-in error pages that contain the block `<hr><center>nginx/_version_</center>` in the output. This may not be desirable. This template is to set up new default error pages for all error codes that are not caught and handled by the 'servers'.
 
-2. Upload <err_num>.html files to /var/www/error
-  * See var/www/error in this repo for templates -or- use http_codes.ods to create your own
+1) Create directory for static error pages: `/var/www/error`
+    * Ensure that nginx has read access
+  
+2) Upload <err_num>.html files to /var/www/error
+    * See var/www/error in this repo for templates -or- use http_codes.ods to create your own
 
-3. Create /etc/nginx/common (if not existing)
+3) Create /etc/nginx/common (if not existing)
 
-4. Create `error.conf` in `/etc/nginx/common`
-  * Contents:
+4) Create `error.conf` in `/etc/nginx/common` with contents:=
 ```
 error_page 400 /400.html;
 error_page 401 /401.html;
@@ -60,5 +61,14 @@ location @error {
 }
 ```
 
-5. Add directive to in top of each of your `server` block `include common/error.conf;`
+5) Add directive to in top of each of your `server` block `include common/error.conf;`
+
+6) test by using location like (change code to see different error pages:
+```
+    location / {
+        return 502;
+    }
+```
+
+You can create your own tempaltes using the provided spreadsheet `http_codes.ods`.
   
