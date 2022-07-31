@@ -8,7 +8,7 @@ NGINX has built-in error pages that contain the block `<hr><center>nginx/_versio
 
 3) Create /etc/nginx/common (if not existing)
 
-4) Create `error.conf` in `/etc/nginx/common` with contents:=
+4) Create `error.conf` in `/etc/nginx/common` with contents:
 ```
 error_page 400 /400.html;
 error_page 401 /401.html;
