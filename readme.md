@@ -51,7 +51,7 @@ error_page 508 /508.html;
 error_page 510 /510.html;
 error_page 511 /511.html;
 
-location ~ /*.html {
+location ~ "^/([0-9]{3}).html" {
         try_files $1.html @error;
         internal;
 }
